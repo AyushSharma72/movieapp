@@ -5,7 +5,7 @@
 
 const scrollContainer = document.querySelector(".scroll-container");
 document.addEventListener("DOMContentLoaded", () => {
-  const apiKey = "5e750355564957a2353604d8a9344e94";
+  const apiKey = "066b4f7d81b68ba4b98cf8614e3b58c1";
   // const baseUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}`;
   const baseUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}`;
 

@@ -1,11 +1,11 @@
 const movContainer = document.getElementById("movContainer");
-const api_key = "5e750355564957a2353604d8a9344e94";
+const api_key = "066b4f7d81b68ba4b98cf8614e3b58c1";
 const api_url = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${api_key}`;
 // const api_url_genres = "https://api.themoviedb.org/3/genre/movie/list";
 const api_url_movies = `https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&sort_by=popularity.desc&page=1"`;
 const img_path = "https://image.tmdb.org/t/p/w1280";
 const SEARCH_API = `https://api.themoviedb.org/3/search/movie?api_key=${api_key}&query="`;
-// `https://api.themoviedb.org/3/search/movie?api_key=5e750355564957a2353604d8a9344e94&query="war`;
+// `https://api.themoviedb.org/3/search/movie?api_key=066b4f7d81b68ba4b98cf8614e3b58c1&query="war`;
 
 const contentInfo = document.getElementById("content-info");
 const moviesHeader = document.getElementById("moviesHeader");
@@ -13,9 +13,9 @@ const moviesHeader = document.getElementById("moviesHeader");
 // const video_url = `https://api.themoviedb.org/3/movie/${movie.id}/videos?api_key=${api_key}`
 // const api_url_genres = `https://api.themoviedb.org/3/genre/movie/list?api_key="${api_key}&page=2"`
 // Get Genre list
-const api_url_genres = `https://api.themoviedb.org/3/genre/movie/list?api_key=5e750355564957a2353604d8a9344e94&page=1`;
+const api_url_genres = `https://api.themoviedb.org/3/genre/movie/list?api_key=066b4f7d81b68ba4b98cf8614e3b58c1&page=1`;
 // Popular movies list
-const api_popular_list = `https://api.themoviedb.org/3/discover/movie?api_key=5e750355564957a2353604d8a9344e94&sort_by=popularity.desc&page=1  `;
+const api_popular_list = `https://api.themoviedb.org/3/discover/movie?api_key=066b4f7d81b68ba4b98cf8614e3b58c1&sort_by=popularity.desc&page=1  `;
 // airing today movies
 const api_air_today = `https://api.themoviedb.org/3/tv/airing_today?api_key=${api_key}`;
 const youtube_watch = `https://www.youtube.com/watch?v=`;
@@ -165,25 +165,28 @@ function viewTrailer(videoKey) {
     allowfullscreen
   ></iframe>
 `;
-fetch(
-  `https://api.themoviedb.org/3/movie/${movie_id}/videos?api_key=${api_key}`
-)
-  .then((vidResponse) => vidResponse.json())
-  .then((vidResponse) => {
-    trailerKeys = vidResponse.results
-      .filter((result) => result.site === "YouTube" && result.type === "Trailer")
-      .map((result) => result.key);
+  fetch(
+    `https://api.themoviedb.org/3/movie/${movie_id}/videos?api_key=${api_key}`
+  )
+    .then((vidResponse) => vidResponse.json())
+    .then((vidResponse) => {
+      trailerKeys = vidResponse.results
+        .filter(
+          (result) => result.site === "YouTube" && result.type === "Trailer"
+        )
+        .map((result) => result.key);
 
-    if (trailerKeys.length > 0) {
-      loadTrailer(trailerKeys[currentTrailerIndex]);
-      // Enable or disable navigation buttons based on trailer count
-      prevTrailerBtn.disabled = currentTrailerIndex === 0;
-      nextTrailerBtn.disabled = currentTrailerIndex === trailerKeys.length - 1;
-    }
-  })
-  .catch((err) => {
-    console.log(err.message);
-  });
+      if (trailerKeys.length > 0) {
+        loadTrailer(trailerKeys[currentTrailerIndex]);
+        // Enable or disable navigation buttons based on trailer count
+        prevTrailerBtn.disabled = currentTrailerIndex === 0;
+        nextTrailerBtn.disabled =
+          currentTrailerIndex === trailerKeys.length - 1;
+      }
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
 }
 
 let genres = [];

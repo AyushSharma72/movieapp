@@ -21,7 +21,7 @@ async function updateBg(url) {
   const res = await fetch(url);
   const data = await res.json();
 
-  data.results.forEach(item => {
+  data.results.forEach((item) => {
     const { backdrop_path } = item;
 
     searchHeader.style.background = `linear-gradient(rgba(0, 0, 0, 0.9),
@@ -32,7 +32,7 @@ async function updateBg(url) {
 }
 
 searchMovies(api_url);
-form.addEventListener("submit", e => {
+form.addEventListener("submit", (e) => {
   e.preventDefault();
 
   const searchTerm = search.value;
@@ -78,7 +78,7 @@ const filterContainer = document.getElementById("filterContainer");
 const applyFilterBtn = document.getElementById("applyFilters");
 
 // filter movie ftching
-applyFilterBtn.addEventListener("click", async e => {
+applyFilterBtn.addEventListener("click", async (e) => {
   e.preventDefault();
 
   const includeAdult = document.getElementById("includeAdult").checked;
@@ -119,7 +119,7 @@ function filterMovies(data) {
       release_date,
       original_language,
     } = searchResArr;
-    searchResArr.forEach(item => {
+    searchResArr.forEach((item) => {
       searchSection.innerHTML += `
       <div class="movie-card mt-4 d-flex rounded-3 m-1 pt-4 bg-dark flex-column shadow align-items-center justify-content-center position-relative">
       <small class="small rounded-circle d-flex align-items-center justify-content-center position-absolute text-white"
@@ -152,7 +152,7 @@ async function fetchGenres(url) {
     const genreData = await genRes.json();
 
     if (genreData.genres) {
-      genreData.genres.forEach(genre => {
+      genreData.genres.forEach((genre) => {
         const genreOption = document.createElement("option");
         genreOption.value = genre.id;
         genreOption.textContent = genre.name;
@@ -172,7 +172,7 @@ async function getLanguages(url) {
 
     //  console.log(data.name.foe)
     if (languages) {
-      languages.forEach(lang => {
+      languages.forEach((lang) => {
         //  available - props (item.iso_639_1, item.english_name)
         const langOption = document.createElement("option");
         langOption.value = lang.iso_639_1;
@@ -205,7 +205,7 @@ function getRandomNumber() {
 
 // const movContainer = document.getElementById("movContainer");
 
-searchSection.addEventListener("click", event => {
+searchSection.addEventListener("click", (event) => {
   // console.log(event.target.parent())
   const clickedElement = event.target.closest(".movie-card");
   movContainer.style.transform = `scale(${1})`;
@@ -246,7 +246,7 @@ searchSection.addEventListener("click", event => {
         <div class="d-flex genre align-items-center gap-2">
             <h4 class="text-warning">Genre: </h4>
             <a class="genre-a">${genre_ids
-              .map(result => `<a class="genre-item">${result}</a>`)
+              .map((result) => `<a class="genre-item">${result}</a>`)
               .join(" | ")}</a>
         </div>
         <div class="overview">
@@ -283,7 +283,6 @@ searchSection.addEventListener("click", event => {
 
 // Exit Movie Details
 
-
 function updateVotesAverage(vote) {
   if (vote >= 75) {
     return "green";
@@ -301,11 +300,11 @@ function votesPercentage(percentage) {
   return `${borderLength} ${circumference - borderLength}`;
 }
 filterContainer.style.transition = `0.3s ease`;
-filterToggle.addEventListener("click", e => {
+filterToggle.addEventListener("click", (e) => {
   displayFilter();
   console.log(123);
 });
-filterContainer.style.transform = `translateX(${350}px)`
+filterContainer.style.transform = `translateX(${350}px)`;
 function displayFilter() {
   if (filterContainer.style.transform === `translateX(${0}px)`) {
     filterContainer.style.transform = `translateX(${350}px)`;

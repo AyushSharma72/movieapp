@@ -22,6 +22,32 @@
     integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="bootstrap.min.css" />
+  
+  <script>
+    function handleSearch() {
+      var searchValue = document.getElementById('searchInput').value.trim();
+      
+      if (searchValue.length === 0) {
+        // Clear previous search results or handle empty search
+        console.log('Search input is empty');
+        return;
+      }
+  
+      const options = {
+        method: 'GET',
+        headers: { accept: 'application/json' }
+      };
+  
+      fetch(`https://api.themoviedb.org/3/search/keyword?query=${searchValue}&page=1&api_key=066b4f7d81b68ba4b98cf8614e3b58c1`, options)
+        .then(response => response.json())
+        .then(data => {
+          // Handle the API response data
+          console.log('API Response:', data);
+          // Update UI or perform further actions based on the API response
+        })
+        .catch(err => console.error('API Error:', err));
+    }
+  </script>
 </head>
 
 <body class="bg-dark">
@@ -61,7 +87,8 @@
 
           <ul class="nav-icons nav gap-3 align-items-center flex-nowrap order-md-3 order-3">
             <li class="position-relative">
-              <a href="html/search.html"><i class="fas fa-search text-white"></i></a>
+            <input type="text" id="searchInput" placeholder="Search..." oninput="handleSearch()">
+            
 
               <div class="search-bar d-none bg-white br-30 position-absolute p-5" style="z-index: 40">
 

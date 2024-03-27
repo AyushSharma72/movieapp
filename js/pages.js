@@ -1,4 +1,4 @@
-const api_key = '5e750355564957a2353604d8a9344e94';
+const api_key = '066b4f7d81b68ba4b98cf8614e3b58c1';
 const img_path = 'https://image.tmdb.org/t/p/w1280';
 
 const imdb_href = `https://www.imdb.com/name/`;
